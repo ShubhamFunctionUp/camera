@@ -1,17 +1,16 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const app = express()
-const mongoose = require('mongoose')
-const route = require('./route/route')
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-    extended: true
-}))
+const express = require('express');
+const bodyParser = require('body-parser');
+const route = require('./route/route');
 
 
-app.use('/',route)
+const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.listen(process.env.PORT || 3000, function () {
-    console.log('Express app running on port ' + (process.env.PORT || 3000))
-})
+// Set up API routes
+app.use("/", route)
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+console.log(`Server is listening on port ${PORT}`);
+});

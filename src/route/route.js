@@ -1,19 +1,21 @@
 const express = require('express');
-const router = express.Router();
 const cameraController = require('../controller/camera');
-const cameraNetworkController = require('../controller/cameraNetworks');
+const cameraNetworksController = require('../controller/cameraNetworks');
 
-// Cameras
-router.get('/getAllCamera', cameraController.getAllCamera)
-router.get('/getCamera/:id',cameraController.getSpecificCamera)
-router.post('/addCamera',cameraController.addCamera)
-router.put('/camera/:id',cameraController.updateCamera)
-router.delete('/camera/:id',cameraController.deleteCamera)
+const router = express.Router();
 
-router.get('/getAllCameraNetwork', cameraNetworkController.getAllCameraNetworks)
-router.get('/getCameraNetwork/:id',cameraNetworkController.getCameraNetworkById)
-router.post('/addCameraNetwork',cameraNetworkController.addCameraNetwork)
-router.put('/cameraNetwork/:id',cameraNetworkController.updateCameraNetwork)
-router.delete('/cameraNetwork/:id',cameraNetworkController.deleteCameraNetwork)
+// Camera routes
+router.get('/cameras', cameraController.getAllCameras);
+router.get('/cameras/:id', cameraController.getCamera);
+router.post('/cameras', cameraController.createCamera);
+router.put('/cameras/:id', cameraController.updateCamera);
+router.delete('/cameras/:id', cameraController.deleteCamera);
+
+// Camera networks routes
+router.get('/networks', cameraNetworksController.getAllCameraNetworks);
+router.get('/networks/:id', cameraNetworksController.getCameraNetwork);
+router.post('/networks', cameraNetworksController.createCameraNetwork);
+router.put('/networks/:id', cameraNetworksController.updateCameraNetwork);
+router.delete('/networks/:id', cameraNetworksController.deleteCameraNetwork);
 
 module.exports = router;
